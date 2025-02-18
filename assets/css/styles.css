@@ -1,5 +1,6 @@
 /*===== GOOGLE FONTS =====*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+
 /*===== VARIABLES CSS =====*/
 :root {
   --header-height: 3rem;
@@ -7,11 +8,11 @@
   /*===== Colores =====*/
   /*Purple 260 - Red 355 - Blue 224 - Pink 340*/
   /* HSL color mode */
-  --hue-color: 224;
+  --hue-color: 260;
   --first-color: hsl(var(--hue-color), 89%, 60%);
   --second-color: hsl(var(--hue-color), 56%, 12%);
   /*===== Fuente y tipografia =====*/
-  --body-font: "Poppins", sans-serif;
+  --body-font: "Lora", sans-serif;
   --big-font-size: 2rem;
   --h2-font-size: 1.25rem;
   --normal-font-size: .938rem;
@@ -33,6 +34,7 @@
     --smaller-font-size: .875rem;
   }
 }
+
 
 /*===== BASE =====*/
 *, ::before, ::after {
@@ -70,6 +72,7 @@ img {
   display: block;
 }
 
+
 /*===== CLASS CSS ===== */
 .section-title {
   position: relative;
@@ -79,22 +82,13 @@ img {
   margin-bottom: var(--mb-4);
   text-align: center;
 }
-.section-title::after {
-  position: absolute;
-  content: "";
-  width: 64px;
-  height: 0.18rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 2rem;
-  background-color: var(--first-color);
-}
+
 
 .section {
   padding-top: 3rem;
   padding-bottom: 2rem;
 }
+
 
 /*===== LAYOUT =====*/
 .bd-grid {
@@ -113,6 +107,7 @@ img {
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
 }
+
 
 /*===== NAV =====*/
 .nav {
@@ -148,7 +143,7 @@ img {
   position: absolute;
   content: "";
   width: 100%;
-  height: 0.18rem;
+  height: 0rem;
   left: 0;
   top: 2rem;
   background-color: var(--first-color);
@@ -162,15 +157,36 @@ img {
   cursor: pointer;
 }
 
-/*Active menu*/
+
+/* Active menu */
+.active-link {
+  position: relative; /* Ensure the link is positioned for absolute positioning of the glow */
+  color: var(--second-color); /* Set the text color */
+  padding: 0.5rem 1rem; /* Add horizontal padding for a button-like appearance */
+  border-radius: 5px; /* Round the corners for a softer look */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transitions for color and transform */
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for contrast */
+}
+
 .active-link::after {
-  position: absolute;
   content: "";
-  width: 100%;
-  height: 0.18rem;
-  left: 0;
-  top: 2rem;
-  background-color: var(--first-color);
+  position: absolute;
+  left: 50%; /* Center the glow */
+  bottom: -2px; /* Position it below the link */
+  width: 100%; /* Full width */
+  height: 100%; /* Match the height of the link */
+  background-color: transparent; /* Make the background transparent */
+  border-radius: 5px; /* Optional: round the edges */
+  box-shadow: 0 0 15px var(--first-color), 0 0 30px var(--first-color); /* Enhanced glowing effect */
+  transform: translateX(-50%); /* Center the glow */
+  z-index: -1; /* Send the glow behind the text */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the glow */
+}
+
+/* Optional: Add hover effect for the active link */
+.active-link:hover {
+  transform: scale(1.05); /* Slightly increase size on hover */
+  color: var(--first-color); /* Change text color on hover */
 }
 
 /*=== Show menu ===*/
@@ -180,45 +196,91 @@ img {
 
 /*===== HOME =====*/
 .home {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between items */
   position: relative;
   row-gap: 5rem;
   padding: 4rem 0 5rem;
+  background-color: var(--background-color); /* Add a background color */
+  background-image: linear-gradient(to bottom, var(--background-color), var(--background-color-2)); /* Add a gradient background */
+  background-size: 100% 300px;
+  background-position: 0% 100%;
 }
+
+
+
 .home__data {
-  align-self: center;
+  align-self: left;
+  text-align: left; /* Align text to the left */
+  max-width: 90%; /* Limit the width of the text section */
 }
+
 .home__title {
   font-size: var(--big-font-size);
   margin-bottom: var(--mb-5);
+  font-weight: bold; /* Make the title bold */
+  margin-top: -10rem; /* Add this line to move it up */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a text shadow */
 }
+
 .home__title-color {
   color: var(--first-color);
 }
+
 .home__social {
+
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Align social icons to the start */
+  margin-top: 0rem; /* Add margin to create space above the social icons */
+  margin-bottom: 5rem; /* Try adding this line */
+  margin-left: -45rem; /* Add margin to create space to the left of the social icons */
 }
+
 .home__social-icon {
   width: max-content;
   margin-bottom: var(--mb-2);
-  font-size: 1.5rem;
+  font-size: 1.5rem;    /* Font size of icons */
   color: var(--second-color);
+  transition: color 0.3s ease-in-out; /* Add a transition effect */
 }
+
 .home__social-icon:hover {
   color: var(--first-color);
+  transform: scale(1); /* Add a scale effect on hover */
 }
+
 .home__img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 260px;
+  width: 100px;
+  border-radius: 30px; /* Add a border radius */
+  box-shadow: 0 0 5px 3px rgba(155, 56, 221, 0.6); /* Add a box shadow */
+  margin-top: -10px; /* Adjust this value to reduce the top margin */
+  margin-bottom: 100px; /* Adjust this value to reduce the bottom margin */
+  
 }
+
 .home__blob {
   fill: var(--first-color);
 }
+
 .home__blob-img {
-  width: 360px;
+  width: 380px;
+  animation: blob-animation 4s infinite; /* Add an animation */
 }
+
+@keyframes blob-animation {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 /*BUTTONS*/
 .button {
@@ -234,33 +296,150 @@ img {
   box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== ABOUT =====*/
+
+
+/* ===== ABOUT ===== */
 .about__container {
-  row-gap: 2rem;
-  text-align: center;
-}
-.about__subtitle {
-  margin-bottom: var(--mb-2);
-}
-.about__img {
-  justify-self: center;
-}
-.about__img img {
-  width: 200px;
-  border-radius: 0.5rem;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  row-gap: 2rem; /* Space between rows */
+  text-align: center; /* Center text */
+  padding: 2rem; /* Add padding around the container */
+  background-color: var(--background-color); /* Add background color */
+  border-radius: 1rem; /* Rounded corners for the container */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  opacity: 0; /* Initially set the opacity to 0 */
+  transition: opacity 0.5s ease; /* Add transition for opacity */
+   /* ...existing styles... */
+  background-image: url("assets\img\project1.jpeg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* ===== SKILLS =====*/
-.skills__container {
-  row-gap: 2rem;
-  text-align: center;
+.about__container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(assets\img\project1.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: transform 0.5s ease;
 }
+
+.about__container.visible:before {
+  transform: translateY(0);
+}
+
+.about__container.visible {
+  opacity: 1; /* Set the opacity to 1 when the container is visible */
+}
+
+
+.about__subtitle {
+  margin-bottom: var(--mb-2);
+  font-size: 1.5rem; /* Increase font size for emphasis */
+  font-weight: bold; /* Make subtitle bold */
+  color: var(--primary-color); /* Change color for better visibility */
+  transition: transform 0.3s ease;
+
+}
+
+.about__subtitle:hover {
+  transform: translateY(-5px) scale(1.05);
+  color: var(--secondary-color);
+}
+
+.about__img {
+  justify-self: center;
+  transition: transform 0.3s ease; /* Add transition for hover effect */
+}
+
+.about__img img {
+  width: 200px; /* Set image width */
+  border-radius: 0.5rem; /* Rounded corners for the image */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for the image */
+}
+
+/* Hover effect for image */
+.about__img img:hover {
+  transform: scale(1.05); /* Slightly enlarge the image on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about__container {
+    padding: 1rem; /* Reduce padding on smaller screens */
+  }
+
+  .about__subtitle {
+    font-size: 1.25rem; /* Adjust font size for smaller screens */
+  }
+
+  .about__img img {
+    width: 150px; /* Adjust image size for smaller screens */
+  }
+}
+
+
+
+/* ===== SKILLS ===== */
+.skills__container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack items vertically */
+  row-gap: 2rem; /* Space between rows */
+  text-align: center; /* Center text */
+  padding: 2rem; /* Add padding around the container */
+  background-color: var(--background-color); /* Add background color */
+  border-radius: 1rem; /* Rounded corners for the container */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease; /* Transition for hover effect */
+  opacity: 0; /* Start hidden for fade-in effect */
+  animation: fadeIn 1s forwards; /* Fade-in effect */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Fade to visible */
+  }
+}
+
+.skills__container:hover {
+  transform: scale(1.02); /* Slightly enlarge the container on hover */
+}
+
 .skills__subtitle {
   margin-bottom: var(--mb-2);
+  font-size: 1.5rem; /* Increase font size for emphasis */
+  font-weight: bold; /* Make subtitle bold */
+  color: var(--primary-color); /* Change color for better visibility */
+  animation: slideIn 0.5s ease forwards; /* Slide in animation */
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0; /* Start invisible */
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0; /* End visible */
+  }
+}
+
 .skills__text {
   margin-bottom: var(--mb-4);
+  color: var(--text-color); /* Set a color for the text */
 }
+
 .skills__data {
   display: flex;
   justify-content: space-between;
@@ -270,41 +449,185 @@ img {
   padding: 0.5rem 1rem;
   margin-bottom: var(--mb-4);
   border-radius: 0.5rem;
-  box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
+  box-shadow: 0px 4px 25px rgba(210, 114, 230, 0.281);
+  transition: background-color 0.3s ease; /* Transition for background color */
+  overflow: hidden; /* Ensure child elements don't overflow */
 }
+
+.skills__data:hover {
+  background-color: rgba(14, 36, 49, 0.1); /* Light background on hover */
+  transform: translateY(-1px); /* Lift effect on hover */
+}
+
 .skills__icon {
   font-size: 2rem;
   margin-right: var(--mb-2);
   color: var(--first-color);
+  transition: transform 0.3s ease; /* Transition for icon */
 }
+
+.skills__icon:hover {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
 .skills__names {
   display: flex;
   align-items: center;
+  animation: fadeIn 0.5s ease forwards; /* Fade in effect for names */
 }
+
 .skills__bar {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: var(--first-color);
+  background: linear-gradient(90deg, var(--first-color), rgba(255, 255, 255, 0.3)); /* Gradient background */
   height: 0.25rem;
   border-radius: 0.5rem;
   z-index: var(--z-back);
+  transition: width 0.5s ease; /* Animation for the bar width */
+}
+
+.skills__python {
+  width: 70%;
+}
+.skills__machinelearning {
+  width: 40%;
+}
+.skills__aws {
+  width: 75%;
+}
+.skills__mysql {
+  width: 45%;
 }
 .skills__html {
-  width: 95%;
+  width: 30%;
 }
-.skills__css {
-  width: 85%;
+.skills__c {
+  width: 30%;
 }
-.skills__js {
-  width: 65%;
+
+/* Animation for skill bars */
+@keyframes skillBarAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: inherit; /* To the specified width */
+  }
 }
-.skills__ux {
-  width: 85%;
+
+.skills__bar {
+  animation: skillBarAnimation 1s forwards; /* Apply animation */
+  animation-delay: 0.5s; /* Delay animation for a smoother effect */
 }
-.skills__img {
-  border-radius: 0.5rem;
+.skills__bar.animate {
+  animation: skillBarAnimation 1s forwards;
 }
+
+
+/*===== EDUCATION =====*/
+.education__container {
+  display: grid;
+  row-gap: 2rem;
+  text-align: center;
+  padding: 2rem; /* Added padding for spacing */
+  background-color: #f9f9f9; /* Light background for the container */
+  border-radius: 10px; /* Rounded corners for the container */
+}
+
+.education__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for hover effects */
+  position: relative; /* Positioning for pseudo-element */
+}
+
+.education__content:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+.education__year {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.education__data {
+  text-align: left;
+}
+
+.education__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #9338af; /* Primary color for the title */
+  margin-bottom: 0.5rem;
+  transition: color 0.3s; /* Transition for color change */
+}
+
+.education__title:hover {
+  color: #8b13a8; /* Darker shade on hover */
+}
+
+.education__subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+.education__institution,
+.education__details {
+  font-size: 1rem;
+  color: #999;
+}
+
+/* Adding a pseudo-element for a decorative effect */
+.education__content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(210, 114, 230, 0.281); /* Light blue overlay */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; /* Transition for opacity */
+  border-radius: 10px; /* Match border radius */
+}
+
+.education__content:hover::after {
+  opacity: 1; /* Show overlay on hover */
+}
+
+@media screen and (min-width: 576px) {
+  .education__container {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2rem;
+  }
+
+  .education__content {
+      grid-template-columns: 1fr;
+      text-align: initial;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .education__container {
+      grid-template-columns: 1fr;
+      column-gap: 2rem;
+  }
+}
+
+
 
 /* ===== WORK =====*/
 .work__container {
@@ -321,26 +644,28 @@ img {
 .work__img img:hover {
   transform: scale(1.1);
 }
+.work__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-/* ===== CONTACT =====*/
-.contact__input {
-  width: 100%;
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-semi);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 1.5px solid var(--second-color);
-  outline: none;
-  margin-bottom: var(--mb-4);
+.project__button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #6f42c1;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
-.contact__button {
-  display: block;
-  border: none;
-  outline: none;
-  font-size: var(--normal-font-size);
-  cursor: pointer;
-  margin-left: auto;
+
+.project__button:hover {
+  background-color: #5a31a1;
 }
+
+
 
 /* ===== FOOTER =====*/
 .footer {
@@ -365,6 +690,7 @@ img {
 .footer__copy {
   font-size: var(--smaller-font-size);
 }
+
 
 /* ===== MEDIA QUERIES=====*/
 @media screen and (max-width: 320px) {
@@ -427,10 +753,7 @@ img {
   .section-title {
     margin-bottom: var(--mb-6);
   }
-  .section-title::after {
-    width: 80px;
-    top: 3rem;
-  }
+  
   .nav {
     height: calc(var(--header-height) + 1.5rem);
   }
@@ -484,3 +807,214 @@ img {
     width: 450px;
   }
 }
+
+
+/* Participation Section */
+.participation {
+  background-color: #f9f9f9; /* Light background for the section */
+  padding: 3rem 0; /* Increased padding for a more spacious feel */
+  text-align: center; /* Center text for better alignment */
+}
+
+.participation__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem; /* Space between items */
+}
+
+.participation__content {
+  background: white; /* White background for content */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+  padding: 2rem; /* Increased padding for more content space */
+  width: calc(33% - 1rem); /* Responsive width */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transition for transform and shadow */
+  position: relative; /* Positioning for pseudo-element */
+  overflow: hidden; /* Prevents overflow */
+}
+
+.participation__content:hover {
+  transform: translateY(-10px); /* Lift effect on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+}
+
+.participation__title {
+  font-size: 1.5rem; /* Larger font size for the title */
+  font-weight: 700; /* Bolder font weight */
+  margin-bottom: 0.5rem;
+  color: #333; /* Dark color for contrast */
+  transition: color 0.3s; /* Transition for color change */
+}
+
+.participation__title:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+.participation__description {
+  font-size: 1rem;
+  color: #666; /* Gray color for description */
+  line-height: 1.6; /* Increased line height for readability */
+  transition: color 0.3s; /* Transition for color change */
+}
+
+.participation__description:hover {
+  color: #555; /* Slightly darker on hover */
+}
+
+/* Adding a pseudo-element for a decorative effect */
+.participation__content::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(210, 114, 230, 0.281); /* Light blue overlay */
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s; /* Transition for opacity */
+  border-radius: 12px; /* Match border radius */
+}
+
+.participation__content:hover::after {
+  opacity: 1; /* Show overlay on hover */
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+/* ===== MEDIA QUERIES=====*/
+@media screen and (max-width: 320px) {
+  .home {
+    row-gap: 2rem;
+  }
+  .home__img {
+    width: 200px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .home {
+    padding: 4rem 0 2rem;
+  }
+  .home__social {
+    padding-top: 0;
+    padding-bottom: 2.5rem;
+    flex-direction: row;
+    align-self: flex-end;
+  }
+  .home__social-icon {
+    margin-bottom: 0;
+    margin-right: var(--mb-4);
+  }
+  .home__img {
+    width: 300px;
+    bottom: 25%;
+  }
+  .about__container {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    text-align: initial;
+  }
+  .skills__container {
+    grid-template-columns: 0.7fr;
+    justify-content: center;
+    column-gap: 1rem;
+  }
+  .work__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    padding-top: 2rem;
+  }
+  .contact__form {
+    width: 360px;
+    padding-top: 2rem;
+  }
+  .contact__container {
+    justify-items: center;
+  }
+}
+@media screen and (min-width: 768px) {
+  body {
+    margin: 0;
+  }
+  .section {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+  .section-title {
+    margin-bottom: var(--mb-6);
+  }
+  
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+  .nav__list {
+    display: flex;
+    padding-top: 0;
+  }
+  .nav__item {
+    margin-left: var(--mb-6);
+    margin-bottom: 0;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__link {
+    color: var(--second-color);
+  }
+  .home {
+    padding: 8rem 0 2rem;
+  }
+  .home__img {
+    width: 400px;
+    bottom: 10%;
+  }
+  .about__container {
+    padding-top: 2rem;
+  }
+  .about__img img {
+    width: 300px;
+  }
+  .skills__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    align-items: center;
+    text-align: initial;
+  }
+  .work__container {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .bd-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .home {
+    padding: 10rem 0 2rem;
+  }
+  .home__img {
+    width: 450px;
+  }
+}
+
+
+
+
+
+
